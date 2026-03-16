@@ -1,0 +1,68 @@
+# Library Management System - Layered Architecture
+
+## 📋 Project Information
+- **Student Name:** นายจิรกิตติ์ คำป่าตัน
+- **Student ID:** 67543210014-6
+- **Course:** ENGSE207 Software Architecture
+
+## 🏗️ Architecture Style
+Layered Architecture (3-tier)
+
+## 📂 Project Structure
+```
+monolithic-library/
+├── server.js          
+├── package.json
+├── library.db        
+└── public/
+    └── index.html
+``` 
+```
+layered-library/
+├── src/               
+│   ├── presentation/
+|   ├── routes/
+│   │   │   └── studentRoutes.js     
+│   │   ├── controllers/
+│   │   │   └── studentController.js  
+│   │   └── middlewares/
+│   │       └── errorHandler.js
+|   |    
+│   ├── business/
+│   │   ├── services/
+│   │   │   └── studentService.js     
+│   │   └── validators/
+│   │       └── studentValidator.js  
+|   |
+│   └── data/
+│       ├── repositories/
+│       │   └── studentRepository.js 
+│       └── database/
+│           └── connection.js      
+|
+├── server.js
+├── package.json
+├── library.db
+└── public/            
+    ├── index.html
+    ├── css/
+    │   └── style.css
+    └── js/
+        ├── api.js
+        └── app.js
+```
+
+## 🚀 How to Run
+
+```
+# 1. Clone repository
+git clone\https://github.com/siri-se/midterm-2568-67543210024-5.git
+
+# 2. Install dependencies
+npm install
+
+# 3. Run server
+npm start
+
+# 4. Test API
+Open browser: http://localhost:3000

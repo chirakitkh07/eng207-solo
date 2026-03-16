@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management - Client</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Student Management System</h1>
+            <span class="badge">🌐 Client-Server Architecture</span>
+        </header>
+        
+        <div class="toolbar">
+            <button class="btn btn-primary" id="add-btn">
+                ➕ Add New Student
+            </button>
+            
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="active">Active</button>
+                <button class="filter-btn" data-filter="graduated">Graduated</button>
+                <button class="filter-btn" data-filter="suspended">Suspended</button>
+                <button class="filter-btn" data-filter="withdrawn">Withdrawn</button>
+            </div>
+        </div>
+        
+        <div class="statistics">
+            <div class="stat-card">
+                <h3 id="stat-active">0</h3>
+                <p>Active</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-graduated">0</h3>
+                <p>Graduated</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-suspended">0</h3>
+                <p>Suspended</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-total">0</h3>
+                <p>Total</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-gpa">0.00</h3>
+                <p>Avg GPA</p>
+            </div>
+        </div>
+        
+        <div id="loading" class="loading">Loading students...</div>
+        
+        <div id="student-list" class="student-grid"></div>
+    </div>
+    
+    <!-- Add/Edit Student Modal -->
+    <div id="student-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Add New Student</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="student-form">
+                <input type="hidden" id="student-id">
+                
+                <div class="form-group">
+                    <label for="student_code">Student Code * (10 digits)</label>
+                    <input type="text" id="student_code" required pattern="\d{10}">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first_name">First Name *</label>
+                        <input type="text" id="first_name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="last_name">Last Name *</label>
+                        <input type="text" id="last_name" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="major">Major *</label>
+                    <select id="major" required>
+                        <option value="">-- Select Major --</option>
+                        <option value="CS">Computer Science (CS)</option>
+                        <option value="SE">Software Engineering (SE)</option>
+                        <option value="IT">Information Technology (IT)</option>
+                        <option value="CE">Computer Engineering (CE)</option>
+                        <option value="DS">Data Science (DS)</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">💾 Save</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Update GPA Modal -->
+    <div id="gpa-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Update GPA</h2>
+                <span class="close" id="gpa-close">&times;</span>
+            </div>
+            <form id="gpa-form">
+                <input type="hidden" id="gpa-student-id">
+                
+                <div class="form-group">
+                    <label for="gpa">New GPA * (0.0 - 4.0)</label>
+                    <input type="number" id="gpa" required min="0" max="4" step="0.01">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Update GPA</button>
+                    <button type="button" class="btn btn-secondary" id="gpa-cancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Update Status Modal -->
+    <div id="status-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Update Status</h2>
+                <span class="close" id="status-close">&times;</span>
+            </div>
+            <form id="status-form">
+                <input type="hidden" id="status-student-id">
+                
+                <div class="form-group">
+                    <label for="status">New Status *</label>
+                    <select id="status" required>
+                        <option value="">-- Select Status --</option>
+                        <option value="active">Active</option>
+                        <option value="graduated">Graduated</option>
+                        <option value="suspended">Suspended</option>
+                        <option value="withdrawn">Withdrawn</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Update Status</button>
+                    <button type="button" class="btn btn-secondary" id="status-cancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
